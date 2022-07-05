@@ -8,9 +8,22 @@ Based on the problem [here](https://github.com/gophercises/task).
 
 ## Run
 ```
-cd bin
+cd $PROJECT_ROOT
 
-./taskman add Buy bread and milk before the snowstorm
+# Add a task
+bin/taskman add Buy bread and milk before the snowstorm
 
-./taskman list
+# List all tasks that haven't been done
+bin/taskman list
+
+# Mark the first listed task as "done"
+bin/taskman do 1
+
+# List all tasks marked "done"
+bin/taskman list done
+
 ```
+
+## TODO:
+- add cleanup command to remove "done" tasks
+- DRY up "done" and "list" code? Maybe into a single function?
