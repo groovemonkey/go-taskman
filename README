@@ -2,3 +2,15 @@
 A toy application (task manager) written in Go.
 
 Based on the problem [here](https://github.com/gophercises/task).
+
+## Build
+```go build -o bin/taskman```
+
+## Run
+```
+cd bin
+
+./taskman add Buy bread and milk before the snowstorm
+
+./taskman list
+```

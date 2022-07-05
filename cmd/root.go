@@ -27,7 +27,7 @@ var rootCmd = &cobra.Command{
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute(*bolt.DB) {
+func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
 		os.Exit(1)
@@ -52,7 +52,6 @@ func initDB() *bolt.DB {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer db.Close()
 
 	// Ensure tasks bucket exists
 	db.Update(func(tx *bolt.Tx) error {
@@ -64,13 +63,4 @@ func initDB() *bolt.DB {
 	})
 
 	return db
-}
-
-// ensureBucketExists() creates a boltdb bucket, if necessary
-func ensureBucketExists(tx *bolt.Tx, bucketName string) error {
-	_, err := tx.CreateBucketIfNotExists([]byte(bucketName))
-	if err != nil {
-		return fmt.Errorf("create bucket %s: %s", bucketName, err)
-	}
-	return nil
 }

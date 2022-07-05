@@ -1,4 +1,4 @@
-module go.mod
+module "github.com/groovemonkey/go-taskman"
 
 go 1.18
 

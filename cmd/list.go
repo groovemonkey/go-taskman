@@ -23,20 +23,23 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("list called")
-
 		db := initDB()
-		db.View(func(tx *bolt.Tx) error {
+		defer db.Close()
+
+		err := db.View(func(tx *bolt.Tx) error {
 			// Assume bucket exists and has keys
 			b := tx.Bucket([]byte("tasks"))
 			c := b.Cursor()
 
 			for k, v := c.First(); k != nil; k, v = c.Next() {
-				fmt.Printf("key=%s, value=%s\n", k, v)
+				fmt.Printf("%s, done=%s\n", k, v)
 			}
 
 			return nil
 		})
+		if err != nil {
+			fmt.Println("ERROR: something went wrong while trying to view the DB: ", err)
+		}
 	},
 }
 
