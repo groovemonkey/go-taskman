@@ -31,8 +31,14 @@ to quickly create a Cobra application.`,
 			b := tx.Bucket([]byte("tasks"))
 			c := b.Cursor()
 
+			// BoltDB items are stored deterministically so we can just use a counter to number them
+			i := 1
 			for k, v := c.First(); k != nil; k, v = c.Next() {
-				fmt.Printf("%s, done=%s\n", k, v)
+				if string(v) == "todo" {
+					fmt.Printf("%d. %s\n", i, k)
+					// Increment visible counter
+					i++
+				}
 			}
 
 			return nil

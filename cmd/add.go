@@ -31,7 +31,7 @@ to quickly create a Cobra application.`,
 		// Add string
 		err := db.Update(func(tx *bolt.Tx) error {
 			b := tx.Bucket([]byte("tasks"))
-			err := b.Put([]byte(argString), []byte("0"))
+			err := b.Put([]byte(argString), []byte("todo"))
 			return err
 		})
 		if err != nil {
