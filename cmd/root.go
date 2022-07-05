@@ -1,7 +1,3 @@
-/*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
@@ -16,10 +12,10 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "taskman",
-	Short: "A command-line task manager written in go: supports add, do, list, and cleanup commands.",
-	Long: `A command-line task manager written in go: supports add, do, list, and cleanup commands.
-	
-	Just a toy.`,
+	Short: "taskman is a small command-line task manager.",
+	Long: `A small command-line task manager written in go: supports add, do, list, and cleanup commands.
+
+(Warning: Just a toy)`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
